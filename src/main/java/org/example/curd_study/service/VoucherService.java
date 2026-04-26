@@ -6,4 +6,5 @@ public interface VoucherService {
     Voucher getById(Long id);
     Voucher create(Voucher voucher);
     boolean deleteById(Long id);
+    Voucher update(Long id, Voucher voucher);
 }

@@ -20,9 +20,8 @@
     <delete id="deleteById">
     delete from tb_coupon where id=#{id}
     </delete>
-    <insert id="insert" parameterType="Voucher" useGeneratedKeys="true">
+    <insert id="insert" parameterType="Voucher" useGeneratedKeys="true" keyProperty="id">
         insert into tb_coupon(
-
                               stock,
                               coupon_name,
                               create_time,
@@ -39,5 +38,28 @@
                              #{endTime}
                          )
     </insert>
+    <update id="update" parameterType="Voucher">
+        update tb_coupon
+        <!-- <set> 标签自动处理末尾多余的逗号 -->
+        <set>
+            <if test="couponName != null and couponName != ''">
+                coupon_name = #{couponName},
+            </if>
+            <if test="stock != null">
+                stock = #{stock},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
 
 </mapper>

@@ -45,4 +45,17 @@ public class VoucherServiceImpl implements VoucherService {
         Assert.notNull(id, "id 不能为空");
         return voucherMapper.deleteById(id) == 1;
     }
+    @Override
+    @Transactional
+    public Voucher update(Long id, Voucher voucher) {
+        Assert.notNull(id, "id 不能为空");
+        Assert.notNull(voucher, "新增优惠券不能为空");
+        LocalDateTime now = LocalDateTime.now();
+        voucher.setId(id);
+        voucher.setUpdateTime(now);
+        int  rows = voucherMapper.update(voucher);
+        if(rows!=1){return null;}
+        return voucherMapper.selectById(id);
+
+    }
 }

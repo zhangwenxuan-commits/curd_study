@@ -8,4 +8,5 @@ public interface VoucherMapper {
     int insert(Voucher voucher);
     int deleteById(Long id);
     Voucher selectById(Long id);
+    int update(Voucher voucher);
 }
