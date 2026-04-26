@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.curd_study.mapper.VoucherMapper">
+
+    <select id="selectById" resultType="Voucher">
+        select
+            id,
+            coupon_name,
+            stock,
+            create_time,
+            update_time,
+            start_time,
+            end_time
+        from tb_coupon
+        where id = #{id}
+    </select>
+    <delete id="deleteById">
+    delete from tb_coupon where id=#{id}
+    </delete>
+    <insert id="insert" parameterType="Voucher" useGeneratedKeys="true">
+        insert into tb_coupon(
+
+                              stock,
+                              coupon_name,
+                              create_time,
+                              update_time,
+                              start_time,
+                              end_time
+        ) values (
+
+                             #{stock},
+                             #{couponName},
+                             #{createTime},
+                             #{updateTime},
+                             #{startTime},
+                             #{endTime}
+                         )
+    </insert>
+
+</mapper>

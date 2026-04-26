@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class Voucher {
-    private String Id;
+    private Long id;
     private String couponName;
     private Long stock;
     private LocalDateTime createTime;
