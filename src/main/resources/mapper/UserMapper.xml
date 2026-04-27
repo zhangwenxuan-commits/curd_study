@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.curd_study.mapper.UserMapper">
+<select id="selectById" resultType="User">
+select
+    id,
+    phone,
+   nick_name,
+   password,
+   create_time,
+   update_time
+from tb_user
+where id=#{id}
+</select>
+    <delete id="deleteById">
+ delete  from tb_user where id=#{id}
+</delete>
+    <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+insert into tb_user(
+                    phone, nick_name, password, create_time, update_time
+) values (
+          #{phone},
+          #{nickName},
+          #{password},
+          #{createTime},
+          #{updateTime}
+         )
+    </insert>
+<update id="update" parameterType="User">
+    update tb_user
+    <!-- <set> 标签自动处理末尾多余的逗号 -->
+    <set>
+        <if test="nickName != null and nickName != ''">
+            nick_name = #{nickName},
+        </if>
+        <if test="phone!= null and phone!=''" >
+            phone = #{phone},
+        </if>
+        <if test="updateTime != null">
+            update_time = #{updateTime},
+        </if>
+    </set>
+    where id = #{id}
+        </update>
+
+</mapper>
